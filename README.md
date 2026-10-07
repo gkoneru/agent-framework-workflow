@@ -105,7 +105,7 @@ sequenceDiagram
         W-->>U: REASONING_MESSAGE_CONTENT (messageId = progress_<call id>)
     end
     G-->>T: FinalSummary (typed output)
-    T-->>A: FinalSummary JSON (compact; not the progress log)
+    T-->>A: FinalSummary JSON (compact, not the progress log)
     W-->>U: TOOL_CALL_END / TOOL_CALL_RESULT
     A-->>W: answer + next question
     W-->>U: TEXT_MESSAGE_CONTENT ...
