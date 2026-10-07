@@ -1,0 +1,15 @@
+# Exact versions this sample was tested with. Optional:
+#   pip install -e ".[azure,foundry,dev]" -c constraints.txt
+agent-framework-core==1.19.0
+agent-framework-openai==1.14.4
+agent-framework-ag-ui==1.4.0
+agent-framework-foundry==1.13.1
+ag-ui-protocol==0.1.22
+openai==3.22.1
+azure-identity==1.26.0
+fastapi==0.141.1
+uvicorn==0.54.0
+pydantic==2.13.5
+httpx==0.28.1
+pytest==9.1.1
+pytest-asyncio==1.4.0

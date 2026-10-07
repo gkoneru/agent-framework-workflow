@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "part-equivalency-agent"
+version = "0.1.0"
+description = "Sample: a conversational Microsoft Agent Framework agent that calls a deterministic workflow and streams its progress"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "agent-framework-core>=1.19.0,<2",
+    "agent-framework-openai>=1.14.0,<2",
+    "agent-framework-ag-ui>=1.4.0,<2",
+    "fastapi>=0.121.0",
+    "uvicorn>=0.30.0",
+    "pydantic>=2,<3",
+    "python-dotenv>=1",
+    "typing-extensions>=4.15.0",
+]
+
+[project.optional-dependencies]
+azure = ["azure-identity>=1.19.0"]
+foundry = ["agent-framework-foundry>=1.13.0,<2", "azure-identity>=1.19.0"]
+dev = ["pytest>=8.3", "pytest-asyncio>=0.25", "httpx>=0.28", "ruff>=0.9"]
+
+[project.scripts]
+part-equivalency = "part_equivalency.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/part_equivalency"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "-m 'not live' --strict-markers"
+markers = ["live: calls a real model provider (needs credentials; run with -m live)"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "ASYNC", "RUF"]
+ignore = ["RUF001", "RUF003"]
